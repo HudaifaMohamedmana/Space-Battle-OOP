@@ -79,7 +79,10 @@ function game() {
     }
     
 }
-
+const audioElement = document.getElementById('background-audio');
+  
+  // Set the volume (0.0 to 1.0)
+  audioElement.volume = 0.35; // Adjust this value to set the volume level
     // A game round would look like this:
 //      You attack the first alien ship
 //      if the ship survives, it attacks you

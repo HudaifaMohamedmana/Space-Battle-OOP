@@ -1,0 +1,64 @@
+body{
+    background-image: url('https://i.pinimg.com/originals/ae/74/46/ae74466588ae577ba8dc164696242cac.gif');
+    background-size: cover; 
+    background-position: center center;
+}
+
+.scorreBord{
+    /* border: solid; */
+    width: 620px;
+    height: 100vh;
+    background-color: #353432bb;
+    color: #21ff08;
+    position: fixed;
+    inset: 0 0 0 auto;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+}
+
+/* ---------------------------------------------screen ----------------------------------------- */
+.screen{
+    border: solid black;
+    height: 95vh;
+    width: 800px;
+    margin: auto;
+    background-color: #222222c8;
+    border-radius: 20px;
+}
+.USSAssembly{
+    margin: 10px;
+    border: solid;
+    height: 15vh;
+}
+.attackingSpase{
+    margin: 10px;
+    border: solid;
+    height: 54.6vh;
+}
+.alienShip{
+    margin: 10px;
+    border: solid;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+}
+.alienShip img{
+    height: 100%;
+}
+.function{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+    /* gap: 5px; */
+}
+.function button{
+    /* width: 33%; */
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: orange;
+    font-size: 30px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
