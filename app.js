@@ -1,3 +1,6 @@
+const roundList = document.querySelector('.round')    
+
+let x =1;
 class Ship{
     constructor(name,hull,firepower,accuracy){
         this.name = name;
@@ -15,10 +18,22 @@ class Ship{
         if (RandomAccuracy <= currentPlayer.accuracy) {
             let remainingHP = currentDefnder.hull - currentPlayer.firepower;
             currentDefnder.hull = remainingHP
+
+            const attackHit = document.createElement('li');
+            attackHit.innerHTML =`you got a hit ${currentPlayer.name} remaining HP of ${currentDefnder.name} is: ${remainingHP}`;
+            roundList.appendChild(attackHit)
+
             console.log(`you got a hit ${currentPlayer.name} accuracy is ${RandomAccuracy}`)
             console.log(`remainingHP of player ${currentDefnder.name} is: ${remainingHP}`);
          } else {
             let remainingHP = currentDefnder.hull
+            const attackMis = document.createElement('li');
+            attackMis.innerHTML =`${currentPlayer.name} missed: ${currentDefnder.name} his HP is : ${remainingHP}`;
+            roundList.appendChild(attackMis)
+
+           
+
+            
             console.log(`do you need glases ${currentPlayer.name} you missed:${currentDefnder.name} his HP is : ${remainingHP}`);
             console.log(`your accuracy is${currentPlayer.accuracy} you need at lest ${RandomAccuracy}`)
 
@@ -51,7 +66,7 @@ function playerTurn() {
         currentDefnder = alienShip;
     }   
 }
-game()
+
 function round(i) {
     currentPlayer.attacks();
     while (currentDefnder.hull > 0) {
@@ -60,29 +75,51 @@ function round(i) {
         alienShip.firepower = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
         alienShip.accuracy = Math.random() * (8 - 6 + 1) + 6;    
     }
-    console.log(`the winer in round ${i+1} is ${currentPlayer.name} HP ${currentPlayer.hull}`);
+    const attackTXT = document.createElement('li');
+    attackTXT.innerHTML =`the winer in round ${i} is ${currentPlayer.name} HP ${currentPlayer.hull}`;
+    roundList.appendChild(attackTXT);
+
+    const attackS = document.createElement('li');
+    attackS.innerHTML =`-------------------------------------- `;
+    roundList.appendChild(attackS) 
+
+    console.log(`the winer in round ${i} is ${currentPlayer.name} HP ${currentPlayer.hull}`);
     getAlien();
     alienShip.hull =  Math.floor(Math.random() * (6 - 3 + 1)) + 3;
 }
-    
-function game() {
-    for (let i = 0; i < 6; i++) {
-        if (USSAssembly.hull >= 0) {
-            round(i);
-            console.log(`-----------------------------`);
-            
-        }else{
-            console.log(`you lost on round: ${i+1}`)
-        }
-        
 
+document.querySelector('.attack').addEventListener('click', function() {  
+    if (x <= 6) {
+        if (USSAssembly.hull >= 0) {
+
+            round(x);
+            console.log('-----------------------------');   
+            x++    
+        }else if (USSAssembly.hull <= 0) {
+            alert(`you lost the game ${currentPlayer.name}`)
+            window.location.reload();
+        }
+    } else if (x > 6) {
+        alert(`you wins the game ${currentPlayer.name}`)
+        window.location.reload();
     }
     
-}
+});
+document.querySelector('.surrender').addEventListener('click', function() {
+    if (x >= 2) {
+        alert(`you surrender ${currentPlayer.name}`)
+        window.location.reload();      
+    }
+
+
+});
+
+
 const audioElement = document.getElementById('background-audio');
-  
-  // Set the volume (0.0 to 1.0)
-  audioElement.volume = 0.35; // Adjust this value to set the volume level
+  audioElement.volume = 0.05; 
+
+
+  // Adjust this value to set the volume level
     // A game round would look like this:
 //      You attack the first alien ship
 //      if the ship survives, it attacks you
