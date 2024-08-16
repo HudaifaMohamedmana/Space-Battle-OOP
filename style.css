@@ -54,9 +54,11 @@ body{
     justify-content: center;
     
 }
-/* .attackingSpase img{
+.attackingSpase img{
     display: block;  
-}  */
+    width: 100%;
+    opacity: 70%;
+} 
 
 .alienShipAttack{    
     transform: translateY(0px);  
