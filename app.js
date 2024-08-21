@@ -7,11 +7,6 @@ class Ship{
         this.firepower = firepower;
         this.accuracy = accuracy;
     }
-    stats() {
-        console.log(`this is the HP ${this.hull}`);
-        console.log(`this is the firepower ${this.firepower}`);
-        console.log(`this is the accuracy ${this.accuracy}`);
-    }
     attacks(){
         let RandomAccuracy = Math.floor(Math.random() * (7.5 - 6 + 1) + 6);
         if (RandomAccuracy <= currentPlayer.accuracy) {
@@ -74,11 +69,13 @@ function round(i) {
     if (x<=6) {
         const newAlienShip = document.getElementById(`alienShip${x}`);
         newAlienShip.style.display = 'block';
-         const oldAlienShip = document.getElementById(`alienShip${i}`);
+        const oldAlienShip = document.getElementById(`alienShip${i}`);
         oldAlienShip.style.display = 'none';
     }  
 }
-document.querySelector('.attack').addEventListener('click', function() {  
+document.querySelector('.attack').addEventListener('click', function() { 
+    const audioElement = document.getElementById('background-audio');
+    audioElement.volume = 0.2; 
     if (x <= 6) {
         if (USSAssembly.hull >= 0) {
             round(x);
@@ -97,4 +94,4 @@ document.querySelector('.surrender').addEventListener('click', function() {
 });
 document.querySelector('.restart').addEventListener('click', function() { window.location.reload();});
 const audioElement = document.getElementById('background-audio');
-  audioElement.volume = 0.2; 
+audioElement.volume = 0.2; 
